@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dating Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore-compat.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <nav>
+        <div class="logo">MyDatingApp</div>
+        <div class="menu-toggle" onclick="toggleSidebar()">☰</div>
+        <a href="javascript:void(0);" class="login-btn" onclick="toggleModal('loginModal')">Login</a>
+    </nav>
+    <div class="sidebar">
+        <div class="close-btn" onclick="toggleSidebar()">×</div>
+        <a href="#">Home</a>
+        <a href="#">Search</a>
+        <a href="#">Messages</a>
+        <a href="#">Profile</a>
+        <a href="#">Settings</a>
+        <a href="javascript:void(0);" class="login-link" onclick="toggleModal('loginModal')">Login</a>
+    </div>
+    <div class="content">
+        <div class="card">
+            <h2>Find a Match</h2>
+            <form id="searchForm" onsubmit="handleSearchSubmit(event)">
+                <div class="form-group">
+                    <label for="gender">I am a</label>
+                    <select id="gender" name="gender">
+                        <option value="male">Man</option>
+                        <option value="female">Woman</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="seeking">I am seeking</label>
+                    <select id="seeking" name="seeking">
+                        <option value="male">Men</option>
+                        <option value="female">Women</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" min="0" max="120">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content" id="loginContent">
+            <span class="close" onclick="toggleModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+                <div class="form-group password-container">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <i class="fas fa-eye eye-icon" id="togglePasswordLogin" onclick="togglePasswordVisibility('password', 'togglePasswordLogin')"></i>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Login</button>
+                </div>
+                <div class="forgot-password">
+                    <p><a href="#">Forgot Password?</a></p>
+                </div>
+                <div class="create-account">
+                    <p>Don't have an account? <a href="javascript:void(0);" onclick="showSignupForm()">Create new account</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
